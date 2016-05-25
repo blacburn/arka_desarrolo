@@ -164,52 +164,7 @@ class registrarForm {
 		echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
 		// var_dump($elemento);
 		
-		$esteCampo = "selecc_registros";
-		$atributos ['nombre'] = $esteCampo;
-		$atributos ['id'] = $esteCampo;
-		$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-		$atributos ["etiquetaObligatorio"] = false;
-		$atributos ['tab'] = $tab ++;
-		$atributos ['seleccion'] = 0;
-		$atributos ['anchoEtiqueta'] = 150;
-		$atributos ['evento'] = '';
-		if (isset ( $_REQUEST [$esteCampo] )) {
-			$atributos ['valor'] = $_REQUEST [$esteCampo];
-		} else {
-			$atributos ['valor'] = '';
-		}
-		$atributos ['deshabilitado'] = false;
-		$atributos ['columnas'] = 2;
-		$atributos ['tamanno'] = 1;
-		$atributos ['ajax_function'] = "";
-		$atributos ['ajax_control'] = $esteCampo;
-		$atributos ['estilo'] = "jqueryui";
-		$atributos ['validar'] = "required";
-		$atributos ['limitar'] = true;
-		$atributos ['anchoCaja'] = 24;
-		$atributos ['miEvento'] = '';
-		// $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "estado_entrada" );
-		$matrizItems = array (
-				array (
-						'0',
-						'Ningun Registro' 
-				),
-				
-				array (
-						'1',
-						'Todos Registros' 
-				) 
-		)
-		;
-		$atributos ['matrizItems'] = $matrizItems;
-		// $atributos['miniRegistro']=;
-		$atributos ['baseDatos'] = "inventarios";
-		// $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "clase_entrada" );
 		
-		// Aplica atributos globales al control
-		$atributos = array_merge ( $atributos, $atributosGlobales );
-		echo $this->miFormulario->campoCuadroLista ( $atributos );
-		unset ( $atributos );
 		
 		if ($elemento) {
 			

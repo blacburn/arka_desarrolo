@@ -60,6 +60,7 @@ class RegistradorOrden {
 				'ubicacion' => $ubicacion 
 		);
 		
+               
 		$cadenaSql = $this->miSql->getCadenaSql ( 'consultarElemento', $arreglo );
 		
 		$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
