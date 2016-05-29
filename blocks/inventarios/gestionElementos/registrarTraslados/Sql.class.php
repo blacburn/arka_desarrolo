@@ -219,7 +219,7 @@ class Sql extends \Sql {
 				$cadenaSql .= ' elemento_individual.serie, elemento_individual.funcionario, id_elemento_gen,  ';
 				$cadenaSql .= ' elemento_individual.id_salida , tipo_bienes.descripcion, dependencias."ESF_DEP_ENCARGADA" dependencia,elemento.descripcion descripcion_elemento,
                     			 funcionario."FUN_IDENTIFICACION" iden_funcionario, 
-  								funcionario."FUN_NOMBRE" nom_funcionario,espacios."ESF_NOMBRE_ESPACIO" espacio,dependencias."ESF_CODIGO_DEP" coddep ';
+  								funcionario."FUN_NOMBRE" nom_funcionario,espacios."ESF_NOMBRE_ESPACIO" espacio,sedes."ESF_SEDE" sede,dependencias."ESF_CODIGO_DEP" coddep ';
 				$cadenaSql .= ' FROM elemento_individual  ';
 				$cadenaSql .= ' JOIN elemento ON elemento.id_elemento = elemento_individual.id_elemento_gen  ';
 				$cadenaSql .= ' JOIN salida ON salida.id_salida = elemento_individual.id_salida  ';
@@ -236,27 +236,27 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE 1=1 ";
 				$cadenaSql .= "AND elemento.tipo_bien <> 1 ";
 				
-				if ($variable [0] != '') {
-					$cadenaSql .= " AND elemento_individual.funcionario = '" . $variable [0] . "'";
+				if ($variable ['funcionario'] != '') {
+					$cadenaSql .= " AND elemento_individual.funcionario = '" .$variable ['funcionario'] . "'";
 				}
-				if ($variable [1] != '') {
-					$cadenaSql .= " AND  elemento_individual.serie= '" . $variable [1] . "'";
+				if ($variable ['serie'] != '') {
+					$cadenaSql .= " AND  elemento_individual.serie= '" . $variable ['serie'] . "'";
 				}
-				if ($variable [2] != '') {
-					$cadenaSql .= " AND  elemento_individual.placa= '" . $variable [2] . "'";
+				if ($variable ['placa'] != '') {
+					$cadenaSql .= " AND  elemento_individual.placa= '" . $variable ['placa'] . "'";
 				}
 				
-				if ($variable [5] != '') {
+				if ($variable ['sede'] != '') {
 					$cadenaSql .= ' AND sedes."ESF_ID_SEDE" = ';
 					$cadenaSql .= " '" . $variable ['sede'] . "' ";
 				}
 				
-				if ($variable [4] != '') {
+				if ($variable ['dependencia'] != '') {
 					$cadenaSql .= ' AND dependencias."ESF_CODIGO_DEP" = ';
 					$cadenaSql .= " '" . $variable ['dependencia'] . "' ";
 				}
 				
-				if ($variable [4] != '') {
+				if ($variable ['ubicacion'] != '') {
 					$cadenaSql .= ' AND espacios."ESF_ID_ESPACIO" = ';
 					$cadenaSql .= " '" . $variable ['ubicacion'] . "' ";
 				}
