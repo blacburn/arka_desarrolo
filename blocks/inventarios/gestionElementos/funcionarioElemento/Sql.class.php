@@ -330,7 +330,7 @@ class Sql extends \Sql {
 					$cadenaSql .= ' AND espacios."ESF_ID_ESPACIO" = ';
 					$cadenaSql .= " '" . $variable ['ubicacion'] . "' ";
 				}
-				$cadenaSql .= " ORDER BY dependencia DESC   ;  ";
+				$cadenaSql .= " ORDER BY dependencia DESC, placa ASC;  ";
 				
 				
 				break;
