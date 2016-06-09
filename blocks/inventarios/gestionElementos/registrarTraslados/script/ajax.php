@@ -160,6 +160,10 @@ $urlFinalPlaca = $url . $cadena;
     $(function () {
         $('#<?php echo $this->campoSeguro('responsable') ?>').width(600);
         $("#<?php echo $this->campoSeguro('responsable') ?>").select2(); 
+        $('#<?php echo $this->campoSeguro('responsable_reci') ?>').width(600);
+        $("#<?php echo $this->campoSeguro('responsable_reci') ?>").select2(); 
+        
+        
         $('#<?php echo $this->campoSeguro('sede') ?>').width(200);
         $("#<?php echo $this->campoSeguro('sede') ?>").select2(); 
         $('#<?php echo $this->campoSeguro('dependencia') ?>').width(200);
