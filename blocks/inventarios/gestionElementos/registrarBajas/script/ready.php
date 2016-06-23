@@ -393,7 +393,6 @@ $("#<?php echo $this->campoSeguro('tipo_mueble')?>").select2();
 	   });
 	   
 	        
-	   
           
 
 

@@ -161,8 +161,8 @@ class RegistradorOrden {
 			<table style='width:100%;'>
 			<tr> 
 			<td style='width:10%;text-align=center;'>Placa</td>
-			<td style='width:10%;text-align=center;'>Dependencia</td>
 			<td style='width:10%;text-align=center;'>Sede</td>
+			<td style='width:10%;text-align=center;'>Dependencia</td>
 			<td style='width:10%;text-align=center;'>Espacio Físico</td>
 			<td style='width:20%;text-align=center;'>Descripción</td>
 			<td style='width:10%;text-align=center;'>Marca y Serie</td>
@@ -175,8 +175,8 @@ class RegistradorOrden {
 				
 				$contenidoPagina .= "<tr>
                     			<td style='width:10%;text-align=center;'>" . $valor ['placa'] . "</td>
-                    			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['dependencia'] . "</font></td>
                     			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['sede'] . "</font></td>
+                    			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['dependencia'] . "</font></td>
                     			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['espacio_fisico'] . "</font></td>
                     			<td style='width:20%;text-align=center;'>" . $valor ['descripcion_elemento'] . "</td>
                     			<td style='width:10%;text-align=center;'>" . $valor ['marca'] . " - " . $valor ['serie'] . "</td>
@@ -321,8 +321,8 @@ class RegistradorOrden {
 			<table style='width:100%;'>
 			<tr>
 			<td style='width:10%;text-align=center;'>Placa</td>
-			<td style='width:10%;text-align=center;'>Dependencia</td>
 			<td style='width:10%;text-align=center;'>Sede</td>
+			<td style='width:10%;text-align=center;'>Dependencia</td>
 			<td style='width:10%;text-align=center;'>Espacio Físico</td>
 			<td style='width:20%;text-align=center;'>Descripción</td>
 			<td style='width:10%;text-align=center;'>Marca y Serie</td>
@@ -335,8 +335,8 @@ class RegistradorOrden {
 				
 				$contenidoPagina .= "<tr>
                     			<td style='width:10%;text-align=center;'>" . $valor ['placa'] . "</td>
-                    			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['dependencia'] . "</font></td>
                     			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['sede'] . "</font></td>
+                    			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['dependencia'] . "</font></td>
                     			<td style='width:10%;text-align=center;'><font size='0.5px'>" . $valor ['espacio_fisico'] . "</font></td>
                     			<td style='width:20%;text-align=center;'>" . $valor ['descripcion_elemento'] . "</td>
                     			<td style='width:10%;text-align=center;'>" . $valor ['marca'] . " - " . $valor ['serie'] . "</td>

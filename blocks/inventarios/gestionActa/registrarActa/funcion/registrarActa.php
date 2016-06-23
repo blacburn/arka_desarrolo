@@ -146,7 +146,8 @@ class RegistradorActa {
 		$cadenaSql = $this->miSql->getCadenaSql ( 'insertarActa', $datosActa );
 		
 		$id_acta = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda",$datosActa,'insertarActa' );
-		
+		var_dump($id_acta);
+                exit;
 		if (isset ( $_REQUEST ['numero_orden'] )) {
 			
 			// Rescatar los Elementos acta

@@ -62,95 +62,97 @@ $urlFinalPlaca = $url . $cadena;
 
 
     function marcar(obj) {
-        elem=obj.elements;
-        for (i=0;i<elem.length;i++)
-            if (elem[i].type=="checkbox")
-                elem[i].checked=true;
-    } 
+        elem = obj.elements;
+        for (i = 0; i < elem.length; i++)
+            if (elem[i].type == "checkbox")
+                elem[i].checked = true;
+    }
 
     function desmarcar(obj) {
-        elem=obj.elements;
-        for (i=0;i<elem.length;i++)
-            if (elem[i].type=="checkbox")
-                elem[i].checked=false;
-    } 
+        elem = obj.elements;
+        for (i = 0; i < elem.length; i++)
+            if (elem[i].type == "checkbox")
+                elem[i].checked = false;
+    }
 
 
 
-    function consultarDependencia(elem, request, response){
+    function consultarDependencia(elem, request, response) {
         $.ajax({
             url: "<?php echo $urlFinal16 ?>",
             dataType: "json",
-            data: { valor:$("#<?php echo $this->campoSeguro('sede') ?>").val()},
-            success: function(data){ 
+            data: {valor: $("#<?php echo $this->campoSeguro('sede') ?>").val()},
+            success: function (data) {
 
 
 
-                if(data[0]!=" "){
+                if (data[0] != " ") {
 
                     $("#<?php echo $this->campoSeguro('dependencia') ?>").html('');
                     $("<option value=''>Seleccione  ....</option>").appendTo("#<?php echo $this->campoSeguro('dependencia') ?>");
-                    $.each(data , function(indice,valor){
+                    $.each(data, function (indice, valor) {
 
-                        $("<option value='"+data[ indice ].ESF_CODIGO_DEP+"'>"+data[ indice ].ESF_DEP_ENCARGADA+"</option>").appendTo("#<?php echo $this->campoSeguro('dependencia') ?>");
-	            	
+                        $("<option value='" + data[ indice ].ESF_CODIGO_DEP + "'>" + data[ indice ].ESF_DEP_ENCARGADA + "</option>").appendTo("#<?php echo $this->campoSeguro('dependencia') ?>");
+
                     });
-	            
+
                     $("#<?php echo $this->campoSeguro('dependencia') ?>").removeAttr('disabled');
-	            
+
                     $('#<?php echo $this->campoSeguro('dependencia') ?>').width(210);
                     $("#<?php echo $this->campoSeguro('dependencia') ?>").select2();
-	            
-	          
-	            
+
+
+
                 }
-	    			
+
 
             }
-		                    
+
         });
-    };
+    }
+    ;
 
 
 
 
 
 
-    function consultarEspacio(elem, request, response){
+    function consultarEspacio(elem, request, response) {
         $.ajax({
             url: "<?php echo $urlFinal4 ?>",
             dataType: "json",
-            data: { valorD:$("#<?php echo $this->campoSeguro('dependencia') ?>").val(),
-                valorS:$("#<?php echo $this->campoSeguro('sede') ?>").val(),},
-            success: function(data){ 
+            data: {valorD: $("#<?php echo $this->campoSeguro('dependencia') ?>").val(),
+                valorS: $("#<?php echo $this->campoSeguro('sede') ?>").val(), },
+            success: function (data) {
 
 
 
-                if(data[0]!=" "){
+                if (data[0] != " ") {
 
                     $("#<?php echo $this->campoSeguro('ubicacion') ?>").html('');
                     $("<option value=''>Seleccione  ....</option>").appendTo("#<?php echo $this->campoSeguro('ubicacion') ?>");
-                    $.each(data , function(indice,valor){
+                    $.each(data, function (indice, valor) {
 
-                        $("<option value='"+data[ indice ].ESF_ID_ESPACIO+"'>"+data[ indice ].ESF_NOMBRE_ESPACIO+"</option>").appendTo("#<?php echo $this->campoSeguro('ubicacion') ?>");
-		            	
+                        $("<option value='" + data[ indice ].ESF_ID_ESPACIO + "'>" + data[ indice ].ESF_NOMBRE_ESPACIO + "</option>").appendTo("#<?php echo $this->campoSeguro('ubicacion') ?>");
+
                     });
-		            
+
                     $("#<?php echo $this->campoSeguro('ubicacion') ?>").removeAttr('disabled');
-		            
+
                     $('#<?php echo $this->campoSeguro('ubicacion') ?>').width(200);
                     $("#<?php echo $this->campoSeguro('ubicacion') ?>").select2();
-		            
-		          
-		            
+
+
+
                 }
-		    			
+
 
             }
-			                    
+
         });
-    };
-	
+    }
+    ;
+
     $(function () {
 
 
@@ -160,84 +162,86 @@ $urlFinalPlaca = $url . $cadena;
             minChars: 3,
             serviceUrl: '<?php echo $urlFinalPlaca; ?>',
             onSelect: function (suggestion) {
-            	
-                if(suggestion!='null'){
+
+                if (suggestion != 'null') {
                     $("#<?php echo $this->campoSeguro('placa') ?>").val(suggestion.data);
-                    if($("#<?php echo $this->campoSeguro('placa') ?>").val()!=''){
+                    if ($("#<?php echo $this->campoSeguro('placa') ?>").val() != '') {
                         $("#<?php echo $this->campoSeguro('responsable') ?>").attr("class", "selectboxdiv  validate[ ]  select2-hidden-accessible");
-                    }else{
+                    } else {
                         $("#<?php echo $this->campoSeguro('responsable') ?>").attr("class", "selectboxdiv  validate[required]  select2-hidden-accessible");
                     }
-           	        
+
                 }
             }
-                    
+
         });
-    	
-        $("#<?php echo $this->campoSeguro('selecc_registros') ?>").change(function(){
 
-    		
-            if($("#<?php echo $this->campoSeguro('selecc_registros') ?>").val()==1){
+        $("#<?php echo $this->campoSeguro('selecc_registros') ?>").change(function () {
+
+
+            if ($("#<?php echo $this->campoSeguro('selecc_registros') ?>").val() == 1) {
                 marcar(this.form);
-    			
 
-            }else{
+
+            } else {
 
                 desmarcar(this.form);
             }
 
         });
 
-        $("#<?php echo $this->campoSeguro('sede') ?>").change(function(){
-            if($("#<?php echo $this->campoSeguro('sede') ?>").val()!=''){
-            	
+        $("#<?php echo $this->campoSeguro('sede') ?>").change(function () {
+            if ($("#<?php echo $this->campoSeguro('sede') ?>").val() != '') {
+
                 consultarDependencia();
-            }else{
-                $("#<?php echo $this->campoSeguro('dependencia') ?>").attr('disabled','');
+            } else {
+                $("#<?php echo $this->campoSeguro('dependencia') ?>").attr('disabled', '');
             }
 
         });
 
 
-        $("#<?php echo $this->campoSeguro('dependencia') ?>").change(function(){
-            if($("#<?php echo $this->campoSeguro('dependencia') ?>").val()!=''){
+        $("#<?php echo $this->campoSeguro('dependencia') ?>").change(function () {
+            if ($("#<?php echo $this->campoSeguro('dependencia') ?>").val() != '') {
                 consultarEspacio();
-            }else{
-                $("#<?php echo $this->campoSeguro('ubicacion') ?>").attr('disabled','');
+            } else {
+                $("#<?php echo $this->campoSeguro('ubicacion') ?>").attr('disabled', '');
             }
 
         });
-        $('#tablaTitulos').ready(function() {
 
-            $('#tablaTitulos').dataTable( {
-            
+
+        $('#tablaTitulos').ready(function () {
+
+            $('#tablaTitulos').dataTable({
                 "language": {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sSearch":         "Buscar:",
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sSearch": "Buscar:",
                     "sLoadingRecords": "Cargando...",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Ãšltimo",
-                        "sNext":     "Siguiente",
+                        "sFirst": "Primero",
+                        "sLast": "Ãšltimo",
+                        "sNext": "Siguiente",
                         "sPrevious": "Anterior"
                     }
                 },
-                "scrollY":"400px",
-                "scrollCollapse": false, 
+                "scrollY": "300px",
+                "scrollCollapse": false,
                 "pagingType": "full_numbers",
                 "bLengthChange": false,
                 "bPaginate": false
 
-                  
+
             });
         });
-        
+
+
     });
 
 </script>

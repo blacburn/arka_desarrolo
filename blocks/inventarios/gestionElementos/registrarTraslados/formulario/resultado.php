@@ -103,6 +103,8 @@ class registrarForm {
 
         $elemento = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
+
+
         // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
         $esteCampo = $esteBloque ['nombre'];
         $atributos ['id'] = $esteCampo;
@@ -210,15 +212,15 @@ class registrarForm {
 
             echo "<thead>
                 <tr>
-                    <th># Número Placa</th>
-                    <th>Descripción Elemento</th>
+                    <th># Número<br>Placa</th>
+                    <th>Descripción<br>Elemento</th>
                     <th>Sede</th>
                     <th>Dependencia</th>
 		    <th>Ubicación<br>Especifica</th>
-                    <th>Nombre Funcionario</th>
+                    <th>Nombre<br>Funcionario</th>
 		    <th>Identificación<br>Funcionario</th>
-                    <th>Tipo Bien</th>
-		    <th>Trasladar Elemento</th>
+                    <th>Tipo<br>Bien</th>
+		    <th>Trasladar<br>Elemento</th>
                 </tr>
             </thead>
             <tbody>";
@@ -272,7 +274,7 @@ class registrarForm {
             echo "</tbody>";
 
             echo "</table>";
-
+            echo $this->miFormulario->marcoAgrupacion('fin');
             // ------------------Division para los botones-------------------------
             $atributos ["id"] = "botones";
             $atributos ["estilo"] = "marcoBotones";
@@ -300,7 +302,7 @@ class registrarForm {
 
             echo $this->miFormulario->division('fin');
 
-            echo $this->miFormulario->marcoAgrupacion('fin');
+
 
             // ---------------- FIN SECCION: Controles del Formulario -------------------------------------------
             // ----------------FINALIZAR EL FORMULARIO ----------------------------------------------------------
@@ -358,20 +360,72 @@ class registrarForm {
             echo $this->miFormulario->formulario($atributos);
         } else {
 
-            $mensaje = "No Se Encontraron<br>Elementos Asociados.";
+            $opc = 0;
 
-            // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-            $esteCampo = 'mensajeRegistro';
-            $atributos ['id'] = $esteCampo;
-            $atributos ['tipo'] = 'error';
-            $atributos ['estilo'] = 'textoCentrar';
-            $atributos ['mensaje'] = $mensaje;
+            $cadenaSql = $this->miSql->getCadenaSql('consultarElementoID', $placa);
+            $elemento_id = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
 
-            $tab++;
+            $elemento_individual = (int) $elemento_id[0][0];
 
-            // Aplica atributos globales al control
-            $atributos = array_merge($atributos, $atributosGlobales);
-            echo $this->miFormulario->cuadroMensaje($atributos);
+            $cadenaSql = $this->miSql->getCadenaSql('consultarElementoBaja', $elemento_id[0][0]);
+            $baja_elemento = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+            if (!empty($baja_elemento)) {
+                $mensaje = "Elemento en estado<br>Solicitud de Baja.";
+
+                // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                $esteCampo = 'mensajeRegistro';
+                $atributos ['id'] = $esteCampo;
+                $atributos ['tipo'] = 'error';
+                $atributos ['estilo'] = 'textoCentrar';
+                $atributos ['mensaje'] = $mensaje;
+
+                $tab++;
+
+                // Aplica atributos globales al control
+                $atributos = array_merge($atributos, $atributosGlobales);
+                echo $this->miFormulario->cuadroMensaje($atributos);
+                $opc = 1;
+            }
+
+            $cadenaSql = $this->miSql->getCadenaSql('consultarElementoEstado', $elemento_id[0][0]);
+            $estado_elemento = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+
+            if (!empty($estado_elemento)) {
+                $mensaje = "Elemento en estado<br>Faltante.";
+
+                // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                $esteCampo = 'mensajeRegistro';
+                $atributos ['id'] = $esteCampo;
+                $atributos ['tipo'] = 'error';
+                $atributos ['estilo'] = 'textoCentrar';
+                $atributos ['mensaje'] = $mensaje;
+
+                $tab++;
+
+                // Aplica atributos globales al control
+                $atributos = array_merge($atributos, $atributosGlobales);
+                echo $this->miFormulario->cuadroMensaje($atributos);
+                $opc = 1;
+            }
+
+            if ($opc == 0) {
+                $mensaje = "Elemento no encontrado<br>para traslados.";
+
+                // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+                $esteCampo = 'mensajeRegistro';
+                $atributos ['id'] = $esteCampo;
+                $atributos ['tipo'] = 'error';
+                $atributos ['estilo'] = 'textoCentrar';
+                $atributos ['mensaje'] = $mensaje;
+
+                $tab++;
+
+                // Aplica atributos globales al control
+                $atributos = array_merge($atributos, $atributosGlobales);
+                echo $this->miFormulario->cuadroMensaje($atributos);
+            }
+
             // --------------- FIN CONTROL : Cuadro de Texto --------------------------------------------------
         }
 

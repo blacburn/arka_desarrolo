@@ -123,10 +123,7 @@ $urlFinalPlaca = $url . $cadena;
                     $('#<?php echo $this->campoSeguro('dependencia') ?>').width(210);
                     $("#<?php echo $this->campoSeguro('dependencia') ?>").select2();
 
-                    $("#<?php echo $this->campoSeguro('ubicacion') ?>").val(null);
-                    $('#<?php echo $this->campoSeguro('ubicacion') ?>').width(200);
-                    $("#<?php echo $this->campoSeguro('ubicacion') ?>").select2();
-                    $("#<?php echo $this->campoSeguro('ubicacion') ?>").attr('disabled', '');
+
 
                 }
 
@@ -240,10 +237,7 @@ $urlFinalPlaca = $url . $cadena;
                 $("#<?php echo $this->campoSeguro('responsable') ?>").attr("class", "selectboxdiv  validate[ ]  select2-hidden-accessible");
                 consultarDependencia();
             } else {
-                $("#<?php echo $this->campoSeguro('dependencia') ?>").select2();
                 $("#<?php echo $this->campoSeguro('dependencia') ?>").attr('disabled', '');
-                $("#<?php echo $this->campoSeguro('ubicacion') ?>").select2();
-                $("#<?php echo $this->campoSeguro('ubicacion') ?>").attr('disabled', '');
             }
 
         });
@@ -282,7 +276,35 @@ $urlFinalPlaca = $url . $cadena;
 
         });
 
+$('#tablaTitulos').ready(function () {
 
+            $('#tablaTitulos').dataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sSearch": "Buscar:",
+                    "sLoadingRecords": "Cargando...",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Ãšltimo",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    }
+                },
+                "scrollY": "300px",
+                "scrollCollapse": false,
+                "pagingType": "full_numbers",
+                "bLengthChange": false,
+                "bPaginate": false
+
+
+            });
+        });
     });
 
 
